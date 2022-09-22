@@ -19,6 +19,7 @@ module.exports = () => {
     message = message.replace("tada:", "🎉  tada: ");
     message = message.replace("ver:", "🕒  ver: ");
     message = message.replace("wip:", "🚧  wip: ");
+    message = message.replace("try:", "💡  try: ");
 
     fs.writeFileSync(process.argv[2], message)
 
