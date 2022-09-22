@@ -11,7 +11,7 @@ module.exports = () => {
     message = message.replace("ci:", "🤖  ci: ");
     message = message.replace("docs:", "📖  docs: ");
     message = message.replace("feat:", "🚀  feat: ");
-    message = message.replace("fix:", "🚑  fix: ");
+    message = message.replace("fix:", "🔨  fix: ");
     message = message.replace("perf:", "⚡  perf: ");
     message = message.replace("refactor:", "🚧  refactor: ");
     message = message.replace("style:", "💄  style: ");
