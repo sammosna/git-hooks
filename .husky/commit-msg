@@ -1,5 +1,4 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-npx smgh-commit $1 # smgh-commit-emoji-1.0.0
-npx smgh-commit $1 # smgh-commit-emoji-1.1.0
+npx smgh-commit $1 # smgh-commit-emoji-1.1.3
