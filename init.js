@@ -18,7 +18,7 @@ if (fs.existsSync(path.join(process.cwd(), "./package.json"))) {
         if (!process.env.husky_skip_init) child.execSync(`${pm} husky install`);
 
 
-        commitEmojiInit()
+        package_json = commitEmojiInit(package_json)
 
 
 
