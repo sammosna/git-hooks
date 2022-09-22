@@ -12,6 +12,10 @@ if (fs.existsSync(path.join(process.cwd(), "./package.json"))) {
     console.log("> Installing husky")
 
     // child.exec(`${pm} install husky --save-dev`, {}, () => {
+
+    child.execSync(`${pm} install husky`)
+    console.log("> husky installed");
+
     let package_json = JSON.parse(fs.readFileSync(path.join(process.cwd(), "./package.json"), "utf8"));
 
     if (!package_json.smgh) package_json.smgh = {};
