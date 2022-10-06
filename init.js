@@ -7,13 +7,19 @@ const pm = require("./inc/pm")();
 const version = require("./package.json").version;
 const commitEmojiInit = require("./modules/commit-emoji/init");
 
+const isWorkspace = pm === "pnpm" && fs.existsSync(path.join(process.cwd(), "./pnpm-workspace.yaml"))
+
 if (fs.existsSync(path.join(process.cwd(), "./package.json"))) {
     console.log("> package.json found!")
+    isWorkspace && console.log("> Workspace found")
     console.log("> Installing husky")
 
     // child.exec(`${pm} install husky --save-dev`, {}, () => {
 
-    child.execSync(`${pm} install husky`)
+    let cmd = `${pm} install husky`
+    isWorkspace ? cmd += ` -w` : null
+    
+    child.execSync(cmd)
     console.log("> husky installed");
 
     let package_json = JSON.parse(fs.readFileSync(path.join(process.cwd(), "./package.json"), "utf8"));
