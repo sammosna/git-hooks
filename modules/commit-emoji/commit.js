@@ -21,6 +21,7 @@ module.exports = () => {
     message = message.replace("wip:", "🚧  wip: ");
     message = message.replace("try:", "💡  try: ");
     message = message.replace("chore:", "🧪  chore: ");
+    message = message.replace("update:", "⬆️  update: ");
 
     fs.writeFileSync(process.argv[2], message)
 
