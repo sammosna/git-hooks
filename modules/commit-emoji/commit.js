@@ -16,6 +16,7 @@ const gitmojis = [
     ["chore", "🧪"],
     ["update", "⬆️ "],
     ["clean", "🧹"],
+    ["cleanup", "🧹"],
 ];
 
 module.exports = () => {
