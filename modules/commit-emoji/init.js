@@ -16,7 +16,10 @@ module.exports = (package_json) => {
     ) {
         console.log("> commit-emoji init");
 
-        // TODO: if new version, remove old hook labeled with "# smgh-commit-emoji"
+        // REMOVING OLD VERSION
+        const content = fs.readFileSync(path.join(process.cwd(), ".husky", "commit-msg"), "utf8").split("\n");
+        const newcontent = content.filter(line => !line.includes("# smgh-commit-emoji")).join("\n");
+        fs.writeFileSync(path.join(process.cwd(), ".husky", "commit-msg"), newcontent);
 
         child.execSync(`${pm} husky add .husky/commit-msg 'npx smgh-commit $1 # smgh-commit-emoji-${version}'`);
 
