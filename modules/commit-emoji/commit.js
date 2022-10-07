@@ -1,3 +1,23 @@
+const gitmojis = [
+    ["revert", "⏳"],
+    ["build", "📦"],
+    ["ci", "🤖"],
+    ["docs", "📖"],
+    ["feat", "🚀"],
+    ["fix", "🔨"],
+    ["perf", "⚡"],
+    ["refactor", "🚧"],
+    ["style", "💄"],
+    ["test", "✅"],
+    ["tada", "🎉"],
+    ["ver", "🕒"],
+    ["wip", "🚧"],
+    ["try", "💡"],
+    ["chore", "🧪"],
+    ["update", "⬆️ "],
+    ["clean", "🧹"],
+];
+
 module.exports = () => {
 
     const fs = require("fs");
@@ -6,22 +26,11 @@ module.exports = () => {
 
     console.log("> husky-git-emoji parse")
 
-    message = message.replace("revert:", "⏳  revert: ");
-    message = message.replace("build:", "📦  build: ");
-    message = message.replace("ci:", "🤖  ci: ");
-    message = message.replace("docs:", "📖  docs: ");
-    message = message.replace("feat:", "🚀  feat: ");
-    message = message.replace("fix:", "🔨  fix: ");
-    message = message.replace("perf:", "⚡  perf: ");
-    message = message.replace("refactor:", "🚧  refactor: ");
-    message = message.replace("style:", "💄  style: ");
-    message = message.replace("test:", "✅  test: ");
-    message = message.replace("tada:", "🎉  tada: ");
-    message = message.replace("ver:", "🕒  ver: ");
-    message = message.replace("wip:", "🚧  wip: ");
-    message = message.replace("try:", "💡  try: ");
-    message = message.replace("chore:", "🧪  chore: ");
-    message = message.replace("update:", "⬆️  update: ");
+    let incipit = message.split(" ")
+
+    gitmojis.forEach([text, emoji] => {
+        incipit = incipit.replace(`${text}:`, `${emoji} ${text}:`)
+    });
 
     fs.writeFileSync(process.argv[2], message)
 
