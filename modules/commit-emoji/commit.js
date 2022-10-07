@@ -26,11 +26,15 @@ module.exports = () => {
 
     console.log("> husky-git-emoji parse")
 
-    let incipit = message.split(" ")
+    const arr = message.split(" ")
+    let incipit = arr[0]
+    arr.shift()
 
-    gitmojis.forEach([text, emoji] => {
-        incipit = incipit.replace(`${text}:`, `${emoji} ${text}:`)
+    gitmojis.forEach(([text, emoji]) => {
+        incipit = incipit.replace(`${text}`, `${emoji} ${text}`)
     });
+
+    message = [incipit, ...arr].join(" ")
 
     fs.writeFileSync(process.argv[2], message)
 
