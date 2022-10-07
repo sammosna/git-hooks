@@ -31,9 +31,16 @@ module.exports = () => {
     let incipit = arr[0]
     arr.shift()
 
-    gitmojis.forEach(([text, emoji]) => {
-        incipit = incipit.replace(`${text}`, `${emoji} ${text}`)
+    gitmojis.every(([text, emoji]) => {
+        console.log(text);
+        if (incipit.replace("\n", "").replace(":", "") === text) {
+            incipit = `${emoji} ${text}`
+            return false
+        }
+        return true
     });
+
+    arr.length > 0 && (incipit += ":");
 
     message = [incipit, ...arr].join(" ")
 
