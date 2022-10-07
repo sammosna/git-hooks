@@ -32,7 +32,6 @@ module.exports = () => {
     arr.shift()
 
     gitmojis.every(([text, emoji]) => {
-        console.log(text);
         if (incipit.replace("\n", "").replace(":", "") === text) {
             incipit = `${emoji} ${text}`
             return false
