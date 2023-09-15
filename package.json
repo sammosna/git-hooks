@@ -16,7 +16,7 @@
     "author": "sammosna",
     "license": "MIT",
     "dependencies": {
-        "husky": "^8.0.1"
+        "husky": "^8.0.3"
     },
     "smgh": {
         "commit_emoji_version": "1.1.3"
