@@ -9,7 +9,7 @@
     },
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "postinstall": "echo 'Please run smgh-init to install the hooks'"
+        "postinstall": "node postinstall.js"
     },
     "keywords": [],
     "author": "sammosna",

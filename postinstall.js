@@ -1,0 +1,1 @@
+console.log("Please run `smgh-init` to install the hooks")
