@@ -17,6 +17,12 @@ module.exports = (package_json) => {
         console.log("> commit-emoji init");
 
         // REMOVING OLD VERSION
+
+        // if file does not exist, create it
+        if (!fs.existsSync(path.join(process.cwd(), ".husky", "commit-msg"))) {
+            fs.writeFileSync(path.join(process.cwd(), ".husky", "commit-msg"), "");
+        }
+
         const content = fs.readFileSync(path.join(process.cwd(), ".husky", "commit-msg"), "utf8").split("\n");
         const newcontent = content.filter(line => !line.includes("# smgh-commit-emoji")).join("\n");
         fs.writeFileSync(path.join(process.cwd(), ".husky", "commit-msg"), newcontent);
