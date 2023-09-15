@@ -10,7 +10,7 @@ const version = require("../../package.json").version;
 module.exports = (package_json) => {
 
     
-    child.execSync(`${run} husky add .husky/commit-msg "pnpm smgh-commit \$1"`)
+    child.execSync(`${run} husky add .husky/commit-msg "pnpm smgh-commit \\$1"`)
     
     // child.execSync(`git add .husky/commit-msg`)
     // child.execSync(`git commit -m "chore: husky commit-msg added"`)
