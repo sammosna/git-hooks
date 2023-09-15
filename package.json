@@ -9,8 +9,7 @@
     },
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "postinstall": "echo GITHOOKS_postinstall",
-        "preinstall": "echo GITHOOKS_preinstall"
+        "postinstall": "echo 'Please run smgh-init to install the hooks'",
     },
     "keywords": [],
     "author": "sammosna",
