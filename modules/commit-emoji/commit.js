@@ -1,4 +1,5 @@
 const gitmojis = [
+    ["init", "🎉"],
     ["revert", "⏳"],
     ["build", "📦"],
     ["ci", "🤖"],
