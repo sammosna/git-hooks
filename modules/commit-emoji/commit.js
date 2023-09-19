@@ -39,7 +39,7 @@ module.exports = () => {
         return true
     });
 
-    arr.length > 0 && (incipit += ":");
+    if (arr.length > 0 && incipit.slice(-1) !== ":") incipit += ":";
 
     message = [incipit, ...arr].join(" ")
 
