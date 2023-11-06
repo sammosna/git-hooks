@@ -1,7 +1,7 @@
 {
     "name": "@sammosna/git-hooks",
     "private": false,
-    "version": "2.0.1",
+    "version": "2.0.2",
     "description": "Collection of git hooks",
     "bin": {
         "smgh-init": "./init.js"
