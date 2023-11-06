@@ -1,0 +1,12 @@
+stages:
+  - build
+
+publish_to_npm:
+  stage: build
+  script:
+    - apt-get update -qy
+    - apt-get install -y nodejs npm
+    - npm install
+    - npm publish
+  only:
+    - /^v[0-9]+\.[0-9]+\.[0-9]+$/
