@@ -2,7 +2,7 @@
 
 const path = require("path");
 const fs = require("fs");
-const { gitPath } = require('../../constants');
+const { gitPath } = require('../../inc/constants');
 const emoji = require("./tasks/emoji");
 const child = require("child_process");
 const smghrc = require("./tasks/smghrc");

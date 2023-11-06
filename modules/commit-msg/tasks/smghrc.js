@@ -1,5 +1,5 @@
 const fs = require("fs")
-const { smghrcPath } = require("../../../constants")
+const { smghrcPath } = require("../../../inc/constants")
 
 module.exports = (commit) => {
     if (!fs.existsSync(smghrcPath)) return commit

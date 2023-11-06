@@ -4,7 +4,7 @@ const fs = require("fs");
 const path = require("path");
 const { init } = require("./modules/commit-msg");
 const smghrcInit = require("./modules/smghrc-init")
-const { hooksPath } = require("./constants");
+const { hooksPath } = require("./inc/constants");
 
 // const {pm, addDev, run} = require("./inc/pm");
 // const isWorkspace = pm === "pnpm" && fs.existsSync(path.join(process.cwd(), "./pnpm-workspace.yaml"))
