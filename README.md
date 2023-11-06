@@ -4,6 +4,5 @@ Alpha
 
 ## Getting started
 ```bash
-pnpm add -D @sammosna/git-hooks
-pnpm smgh-init
+pnpm add -D @sammosna/git-hooks@latest
 ```
