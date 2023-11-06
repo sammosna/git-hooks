@@ -4,8 +4,7 @@
     "version": "1.8.0",
     "description": "Collection of git hooks",
     "bin": {
-        "smgh-init": "./init.js",
-        "smgh-commit": "./commit.js"
+        "smgh-init": "./init.js"
     },
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
