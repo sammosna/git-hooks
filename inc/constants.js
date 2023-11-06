@@ -1,13 +1,26 @@
 const path = require("path");
 
-const rootPath = process.cwd();
-const gitPath = path.join(rootPath, "./.git/");
-const hooksPath = path.join(gitPath, "hooks")
-const smghrcPath = path.join(rootPath, ".git-hooks");
+const createPaths = (rootPath = process.cwd()) => {
+    if (rootPath.includes("/node_modules/")) {
+        console.log("Possibly postinstall script");
+        rootPath = rootPath.split("node_modules")[0]
+    }
+
+
+    const gitPath = path.join(rootPath, "./.git/");
+    const hooksPath = path.join(gitPath, "hooks")
+    const smghrcPath = path.join(rootPath, ".git-hooks");
+
+    return {
+        rootPath,
+        gitPath,
+        hooksPath,
+        smghrcPath
+    }
+}
+
 
 module.exports = {
-    rootPath,
-    gitPath,
-    hooksPath,
-    smghrcPath
+    createPaths,
+    ...createPaths()
 }
