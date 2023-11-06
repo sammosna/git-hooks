@@ -3,8 +3,15 @@ const { smghrcPath } = require("../inc/constants")
 
 const smgh = {
     "$schema": "https://raw.githubusercontent.com/sammosna/git-hooks/main/inc/schemas/rc/v1.json",
-    replace: [],
-    uppercase: []
+    modules: {
+        "commit-msg": {
+            tasks: {
+                emoji: true,
+                replace: [],
+                uppercase: []
+            }
+        }
+    }
 }
 
 
