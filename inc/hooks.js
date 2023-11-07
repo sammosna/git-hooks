@@ -1,6 +1,7 @@
 const path = require("path");
 const fs = require("fs");
 const child = require("child_process");
+const { smghrcPath } = require("./constants");
 
 const hookExist = (h) => {
     if (!fs.existsSync(h)) {
@@ -12,30 +13,23 @@ const hookExist = (h) => {
 
 const hookUpdate = (h, newLines) => {
     console.log("hookUpdate");
+
+    const rc = JSON.parse(fs.readFileSync(smghrcPath, "utf-8"))
     const data = fs.readFileSync(h, "utf-8");
     const lines = data.split("\n").filter(x => x) || []
 
-    if (lines[0] && lines[0] !== "#! /usr/bin/env node") throw new Error("SHould be node")
+    const runtimePath = child.execSync(`which ${rc.runtime}`, { encoding: "utf-8" });
 
-    for (const nl of [
-        "#! /usr/bin/env node",
-        ...newLines]
-    ) {
+    const envString = `#! /usr/bin/env ${runtimePath}`
+
+    if (lines[0] && !lines[0].includes(rc.runtime)) throw new Error(`Git hook: not the same runtime. Should be ${rc.runtime}, found "${lines[0]}"`)
+
+    /** keep runtime path updated */
+    lines[0] = envString
+
+    for (const nl of newLines) {
         if (!lines.includes(nl)) lines.push(nl)
     }
-
-
-    // if (!lines.length) {
-    //     console.log("NEW FILE");
-    //     delete lines[0]
-    //     lines.push("#! /usr/bin/env node")
-    //     lines.push(`const { commitMsg } = require("@sammosna/git-hooks")`)
-    //     lines.push("commitMsg()")
-    // }
-
-    // console.log("lines", lines);
-
-    // console.log("data", data);
 
     fs.writeFileSync(h, lines.join("\n"), { encoding: 'utf8', flag: 'w' })
 }

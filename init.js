@@ -10,5 +10,5 @@ if (!fs.existsSync(gitPath)) throw new Error("No .git folder")
 
 if (!fs.existsSync(hooksPath)) fs.mkdirSync(hooksPath);
 
-init()
 smghrcInit()
+init()
