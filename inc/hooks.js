@@ -1,4 +1,3 @@
-const path = require("path");
 const fs = require("fs");
 const child = require("child_process");
 const { smghrcPath, ALLOWED_RUNTIMES } = require("./constants");
