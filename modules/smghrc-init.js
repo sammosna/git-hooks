@@ -4,7 +4,7 @@ const merge = require('deepmerge')
 
 const smgh = {
     "$schema": "https://raw.githubusercontent.com/sammosna/git-hooks/main/inc/schemas/rc/v1.json",
-    runtime: "bun",
+    runtime: "node",
     checkUpdates: true,
     modules: {
         "commit-msg": {
