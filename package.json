@@ -12,5 +12,8 @@
     },
     "keywords": [],
     "author": "sammosna",
-    "license": "MIT"
+    "license": "MIT",
+    "dependencies": {
+        "deepmerge": "^4.3.1"
+    }
 }
