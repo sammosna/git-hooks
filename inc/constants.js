@@ -1,5 +1,7 @@
 const path = require("path");
 
+const ALLOWED_RUNTIMES = ["bun", "node"]
+
 const createPaths = (rootPath = process.cwd()) => {
     if (rootPath.includes("/node_modules/")) {
         console.log("Possibly postinstall script");
@@ -21,6 +23,7 @@ const createPaths = (rootPath = process.cwd()) => {
 
 
 module.exports = {
+    ALLOWED_RUNTIMES,
     createPaths,
     ...createPaths()
 }

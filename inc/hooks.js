@@ -1,7 +1,8 @@
 const path = require("path");
 const fs = require("fs");
 const child = require("child_process");
-const { smghrcPath } = require("./constants");
+const { smghrcPath, ALLOWED_RUNTIMES } = require("./constants");
+const { isRuntimeAllowed } = require("./utils");
 
 const hookExist = (h) => {
     if (!fs.existsSync(h)) {
@@ -22,7 +23,7 @@ const hookUpdate = (h, newLines) => {
 
     const envString = `#! /usr/bin/env ${runtimePath}`
 
-    if (lines[0] && !lines[0].includes(rc.runtime)) throw new Error(`Git hook: not the same runtime. Should be ${rc.runtime}, found "${lines[0]}"`)
+    if (lines[0] && !isRuntimeAllowed(lines[0])) throw new Error("Runtime not supported")
 
     /** keep runtime path updated */
     lines[0] = envString
