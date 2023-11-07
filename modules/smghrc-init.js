@@ -5,6 +5,7 @@ const merge = require('deepmerge')
 const smgh = {
     "$schema": "https://raw.githubusercontent.com/sammosna/git-hooks/main/inc/schemas/rc/v1.json",
     runtime: "bun",
+    checkUpdates: true,
     modules: {
         "commit-msg": {
             tasks: {
@@ -13,9 +14,7 @@ const smgh = {
                 uppercase: []
             }
         },
-        "post-commit": {
-            checkUpdates: true
-        }
+        "post-commit": {}
     }
 }
 
