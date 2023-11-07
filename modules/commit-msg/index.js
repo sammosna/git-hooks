@@ -1,17 +1,17 @@
 #! /usr/bin/env node
 
-const path = require("path");
-const fs = require("fs");
-const { gitPath, smghrcPath } = require('../../inc/constants');
-const emoji = require("./tasks/emoji");
-const child = require("child_process");
-const replace = require("./tasks/replace");
-const uppercase = require("./tasks/uppercase");
-const { hookUpdate, hookExist } = require("../../inc/hooks");
+import { join } from "path";
+import { readFileSync, writeFileSync } from "fs";
+import { gitPath, smghrcPath } from '../../inc/constants.js';
+import emoji from "./tasks/emoji.js";
+import child from "child_process";
+import replace from "./tasks/replace.js";
+import uppercase from "./tasks/uppercase.js";
+import { hookUpdate, hookExist } from "../../inc/hooks.js";
 
-const hookPath = path.join(gitPath, "hooks/commit-msg");
+const hookPath = join(gitPath, "hooks/commit-msg");
 
-const init = () => {
+export const init = () => {
     console.log("commit init");
     
     hookExist(hookPath);
@@ -22,24 +22,18 @@ const init = () => {
     ])
 }
 
-const run = () => {
+export const run = () => {
     console.log("Commit-msg run 2");
 
-    const rc = JSON.parse(fs.readFileSync(smghrcPath, "utf-8"))
+    const rc = JSON.parse(readFileSync(smghrcPath, "utf-8"))
     const tasks = rc.modules["commit-msg"].tasks
 
-    let message = fs.readFileSync(process.argv[2], "utf8");
+    let message = readFileSync(process.argv[2], "utf8");
 
     if (tasks.emoji) message = emoji(message)
     if (tasks.replace) message = replace(message, tasks.replace)
     if (tasks.uppercase) message = uppercase(message, tasks.uppercase)
 
-    fs.writeFileSync(process.argv[2], message)
+    writeFileSync(process.argv[2], message)
 
-}
-
-
-module.exports = {
-    init,
-    run
 }

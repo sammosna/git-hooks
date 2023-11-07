@@ -33,7 +33,7 @@
 // }
 
 
-function PM() {
+export function PM() {
     const o = {}
     if (process.env.PNPM_HOME || process.env.PNPM_PACKAGE_NAME) {
         o.pm = "pnpm"
@@ -47,5 +47,3 @@ function PM() {
     o.run = "npm"
     return o
 }
-
-module.exports = PM();

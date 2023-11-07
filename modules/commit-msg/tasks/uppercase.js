@@ -1,4 +1,4 @@
-module.exports = (commit, occurences) => {
+export default (commit, occurences) => {
     console.log("Task: uppercase");
     
     for (const r of occurences) {

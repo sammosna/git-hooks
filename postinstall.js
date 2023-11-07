@@ -1,1 +1,1 @@
-require("./init")
+import "./init.js";

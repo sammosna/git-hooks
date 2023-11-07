@@ -20,7 +20,7 @@ const gitmojis = {
     cleanup: "🧹",
 }
 
-module.exports = (commit) => {
+export default (commit) => {
 
     const arr = commit.split(" ")
     let incipit = arr[0]

@@ -1,7 +1,2 @@
-const { run: commitMsg } = require("./modules/commit-msg/index")
-const { run: postCommit } = require("./modules/post-commit/index")
-
-module.exports = {
-    commitMsg,
-    postCommit
-}
+export { run as commitMsg } from "./modules/commit-msg/index.js"
+export { run as postCommit } from "./modules/post-commit/index.js"

@@ -1,7 +1,8 @@
-const fs = require("fs");
-const path = require("path")
-const { Notification } = require("./errors");
-const { smghrcPath } = require("./constants");
+import { readFileSync, readdirSync } from "fs";
+import { basename, dirname, resolve } from "path";
+import { Notification } from "./errors.js";
+import { smghrcPath } from "./constants.js";
+import { fileURLToPath } from "url";
 
 const getLatestVersion = async () => {
     const resp = await fetch("https://api.github.com/repos/sammosna/git-hooks/tags")
@@ -11,17 +12,14 @@ const getLatestVersion = async () => {
 }
 
 
-const checkUpdates = async () => {
-    const rc = JSON.parse(fs.readFileSync(smghrcPath, "utf-8"))
+export const checkUpdates = async () => {
+    const rc = JSON.parse(readFileSync(smghrcPath, "utf-8"))
     if (!rc.checkUpdates) return
-    const pj = JSON.parse(fs.readFileSync(path.resolve(__dirname, "../package.json")), "utf-8")
+
+    const pj = JSON.parse(readFileSync(resolve(dirname(fileURLToPath(import.meta.url)), "../package.json"), "utf-8"))
     const current = pj.version;
     console.log("current", current);
     const latest = await getLatestVersion()
     console.log("latest", latest);
     if (String(current) !== String(latest)) throw new Notification("UPDATE", "Please update to latest version")
-}
-
-module.exports = {
-    checkUpdates
 }

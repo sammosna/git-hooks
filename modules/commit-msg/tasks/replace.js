@@ -1,4 +1,4 @@
-module.exports = (commit, occurences) => {
+export default (commit, occurences) => {
     console.log("Task: replace");
 
     for (const [s, r] of occurences) {

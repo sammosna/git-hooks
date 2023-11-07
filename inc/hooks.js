@@ -1,24 +1,24 @@
-const fs = require("fs");
-const child = require("child_process");
-const { smghrcPath, ALLOWED_RUNTIMES } = require("./constants");
-const { isRuntimeAllowed } = require("./utils");
+import { existsSync, writeFileSync, readFileSync } from "fs";
+import { execSync } from "child_process";
+import { smghrcPath } from "./constants.js"
+import { isRuntimeAllowed } from "./utils.js";
 
-const hookExist = (h) => {
-    if (!fs.existsSync(h)) {
-        fs.writeFileSync(h, "");
-        child.execSync(`chmod +x ${h}`);
+export const hookExist = (h) => {
+    if (!existsSync(h)) {
+        writeFileSync(h, "");
+        execSync(`chmod +x ${h}`);
         console.log("Created", h);
     }
 }
 
-const hookUpdate = (h, newLines) => {
+export const hookUpdate = (h, newLines) => {
     console.log("hookUpdate");
 
-    const rc = JSON.parse(fs.readFileSync(smghrcPath, "utf-8"))
-    const data = fs.readFileSync(h, "utf-8");
+    const rc = JSON.parse(readFileSync(smghrcPath, "utf-8"))
+    const data = readFileSync(h, "utf-8");
     const lines = data.split("\n").filter(x => x) || []
 
-    const runtimePath = child.execSync(`which ${rc.runtime}`, { encoding: "utf-8" });
+    const runtimePath = execSync(`which ${rc.runtime}`, { encoding: "utf-8" });
 
     const envString = `#! /usr/bin/env ${runtimePath}`
 
@@ -31,11 +31,5 @@ const hookUpdate = (h, newLines) => {
         if (!lines.includes(nl)) lines.push(nl)
     }
 
-    fs.writeFileSync(h, lines.join("\n"), { encoding: 'utf8', flag: 'w' })
-}
-
-
-module.exports = {
-    hookExist,
-    hookUpdate
+    writeFileSync(h, lines.join("\n"), { encoding: 'utf8', flag: 'w' })
 }

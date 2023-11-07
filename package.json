@@ -3,17 +3,29 @@
     "private": false,
     "version": "2.2.1",
     "description": "Collection of git hooks",
+    "type": "module",
     "bin": {
         "smgh-init": "./init.js"
     },
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
+        "build:bun": "bun build ./index.js --outdir ./out --target=node",
+        "build": "rollup --config",
+        "dev": "rollup --config --watch",
         "postinstall": "node postinstall.js"
     },
-    "keywords": [],
+    "exports": {
+        ".": {
+            "require": "./dist/index.cjs",
+            "import": "./dist/index.js"
+        }
+    },
+    "keywords": [ ],
     "author": "sammosna",
     "license": "MIT",
     "dependencies": {
         "deepmerge": "^4.3.1"
+    },
+    "devDependencies": {
+        "rollup": "^4.3.0"
     }
 }

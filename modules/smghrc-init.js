@@ -1,6 +1,6 @@
-const fs = require("fs")
-const { smghrcPath } = require("../inc/constants");
-const merge = require('deepmerge')
+import { existsSync, readFileSync, writeFileSync } from "fs";
+import { smghrcPath } from "../inc/constants.js";
+import merge from 'deepmerge';
 
 const smgh = {
     "$schema": "https://raw.githubusercontent.com/sammosna/git-hooks/main/inc/schemas/rc/v1.json",
@@ -19,16 +19,16 @@ const smgh = {
 }
 
 
-module.exports = () => {
+export default () => {
     let data = {}
 
-    if (fs.existsSync(smghrcPath)) {
+    if (existsSync(smghrcPath)) {
         data = JSON.parse(
-            fs.readFileSync(smghrcPath, { encoding: "utf-8" })
+            readFileSync(smghrcPath, { encoding: "utf-8" })
         )
     }
 
     const updated = merge(smgh, data);
 
-    fs.writeFileSync(smghrcPath, JSON.stringify(updated, null, '\t'));
+    writeFileSync(smghrcPath, JSON.stringify(updated, null, '\t'));
 }

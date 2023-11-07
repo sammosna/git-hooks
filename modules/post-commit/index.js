@@ -1,13 +1,13 @@
 #! /usr/bin/env node
 
-const path = require("path");
-const fs = require("fs");
-const { gitPath, smghrcPath } = require('../../inc/constants');
-const { hookUpdate, hookExist } = require("../../inc/hooks");
+import { join } from "path";
+import fs from "fs";
+import { gitPath, smghrcPath } from '../../inc/constants.js';
+import { hookUpdate, hookExist } from "../../inc/hooks.js";
 
-const hookPath = path.join(gitPath, "hooks/post-commit");
+const hookPath = join(gitPath, "hooks/post-commit");
 
-const init = () => {
+export const init = () => {
     console.log("post-commit init");
     
     hookExist(hookPath);
@@ -18,7 +18,7 @@ const init = () => {
     ])
 }
 
-const run = () => {
+export const run = () => {
     console.log("post-commit run");
 
     // const rc = JSON.parse(fs.readFileSync(smghrcPath, "utf-8"))
@@ -26,10 +26,4 @@ const run = () => {
 
     // fs.writeFileSync(process.argv[2], message)
 
-}
-
-
-module.exports = {
-    init,
-    run
 }
