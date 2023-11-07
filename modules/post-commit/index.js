@@ -24,12 +24,6 @@ const run = () => {
     // const rc = JSON.parse(fs.readFileSync(smghrcPath, "utf-8"))
     // const tasks = rc.modules["post-commit"].tasks
 
-    // let message = fs.readFileSync(process.argv[2], "utf8");
-
-    // if (tasks.emoji) message = emoji(message)
-    // if (tasks.replace) message = replace(message, tasks.replace)
-    // if (tasks.uppercase) message = uppercase(message, tasks.uppercase)
-
     // fs.writeFileSync(process.argv[2], message)
 
 }
