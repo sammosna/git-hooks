@@ -9,12 +9,15 @@ import { init as initPostCommit } from "./modules/post-commit/index.js";
 import { checkUpdates } from "./inc/updates.js";
 
 
-if (!existsSync(gitPath)) throw new Error("No .git folder")
+if (!existsSync(gitPath)) {
+    console.log("No .git folder. Skipping.");
+} else {
 
-if (!existsSync(hooksPath)) mkdirSync(hooksPath);
+    if (!existsSync(hooksPath)) mkdirSync(hooksPath);
 
-initSmghrc()
-initCommitMsg()
-initPostCommit()
+    initSmghrc()
+    initCommitMsg()
+    initPostCommit()
 
-checkUpdates()
+    checkUpdates()
+}
